@@ -21,110 +21,13 @@
 
 
 
-<div id="box11">
-<div id="logo11">
-<form method="post">
-<button OnClick="submit" name="button11">Eintrag Besucher</button>
-</form>
-</div>
-
-
-
-<div id="box12">
-<div id="logo12">
-<form method="post">
-<button OnClick="submit" name="button12">Besucher abfrage</button>
-</form>
-</div>
-
-
-
-<div id="box13">
-<div id="logo13">
-<form method="post">
-<button OnClick="submit" name="button13">WiFi statt MDBT42Q mit BME280</button>
-</form>
-</div>
-
-
-
-<div id="box14">
-<div id="logo14">
-<form method="post">
-<button OnClick="submit" name="button14">MDBT42Q mit BME280 später</button>
-</form>
-</div>
-
-
-
-<div id="box15">
-<div id="logo15">
-<form method="post">
-<button OnClick="submit" name="button15">für später</button>
-</form>
-</div>
 
 
 
 
-<div id="box16">
-<div id="logo16">
-<form method="post">
-<button OnClick="submit" name="button16">für später</button>
-</form>
-</div>
 
 
 
-
-<div id="box2">
-
-
-
-
-global $Anzahl;
-global $row;
-
-
-
-
-$verbindung = mysqli_connect("localhost:3307", "Reinhard", "HalloInge5319üäö" ,"Besucher2")
-or die ("Fehler Reihard");
- // localhost:3306 = Maria DB5
- // localhost:3307 = Maria DB10
-mysqli_select_db($verbindung , "Besucher")
-or die ("Am Sonntag versuchen");
-
-
-$abfrage = "SELECT * FROM Zähler ORDER BY id DESC LIMIT 1";// letzten 1 Einträge
-
-$ergebnis = mysqli_query($verbindung, $abfrage);
-
-while($row = mysqli_fetch_object($ergebnis))
- {
-     ?> 
-       
-    <p>
-
-    Datum_Uhrzeit : <b><?php echo $row->Datum_Uhrzeit; ?></b><br />
-    Besucher : <b><?php echo $row->Anzahl; ?></b><br />
-    
-    
-
-    
-    <hr />
-    </b><br />
-    <?php
-$Anzahl = $row->Anzahl;
-
-}
-
-
-
-mysqli_close($verbindung);
-
-        
-?>
 
 
 
