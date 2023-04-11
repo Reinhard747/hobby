@@ -12,38 +12,24 @@
     <script src="https://www.puck-js.com/puck.js"></script>
 
    
-    
-       
-            <div id="vorwärts">
 
     
-    <button onclick="Puck.write('D4.set();\n');">vorwärts</button>
-</div>
+    <button onclick="doSomething()">vorwärts</button>
+
+    <script>
+
+    function doSomething() {
+
+        Puck.write('D4.set();\n');
 
 
-    <hr />
-    <button onclick="Puck.write('D31.set();\n');">vorwärts Stop</button>
-  
-    <hr />
-  
-    <button onclick="Puck.write('D3.set());\n');">rückwärts</button>
-    <button onclick="Puck.write('D5.set();\n');">rückwärts Stop</button>
-  
-    <hr />
-  
-    <button onclick="Puck.write('D14.set();\n');">Musik 1</button>
+}
+
+    </script>
     
-    <button onclick="Puck.write('D15.set();\n');">Musik 2</button>
-  
-    <button onclick="Puck.write('D16.set();\n');">Musik 3</button>
-  
-    <button onclick="Puck.write('D17.set();\n');">Musik 4</button>
-  
-    <hr />
+
     
-    <button onclick="Puck.write('D3.reset();D4.reset();D5.reset();D14.reset();D15.reset();D16.reset();D17.reset();D31.reset();\n');">Reset</button>
-  
-        
+    
         
               
         
