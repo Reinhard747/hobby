@@ -37,8 +37,8 @@ text-align: center;
 
 
 #box2 {
-    margin-top: 140px;
-    margin-left: 40px;
+    margin-top: 240px;
+    margin-left: 100px;
     height: 170px;
     width: 260px;
 background: rgb(0, 255, 200);
@@ -47,7 +47,7 @@ border: solid black;
 }
 
 #logo2 {
-      font-size: 4em; 
+      font-size: 2em; 
 }
 #logo2 p {
     
