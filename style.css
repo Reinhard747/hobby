@@ -11,17 +11,10 @@ max-width: 100%;
 margin: 20 auto;
 }
 
-#logo2 {
-    font-size: 2em; 
-}
-#logo2 p {
-  
-  font-family: Grand Hotel; 
-  background: rgb(0, 255, 200);
-}
 
 
-#logo2 button {
+
+#vorwärts {
   height: 30px;
   width: 200px;
   font-size: 20px;
