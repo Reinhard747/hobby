@@ -6,7 +6,8 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="style.css">
 
-
+ script  src =" multidownload.js " > / script >
+ script  src =" https://greasyfork.org/scripts/2350-filesaver-js/code/filesaverjs.js?version=6255 " > / script >
 
 <head>
 
@@ -27,16 +28,25 @@
 
 
 
-<script>
+    <script>
 
     
 
-        function  do_dl ( )  {
-        
-         Download : "/rest/image/bild1.jpg" ,  "bild1.jpg"
-       
-        } ;
-
+function  do_dl ( )  {
+ download_files ( [
+ {  Download : "/rest/image/bild1.jpg" ,  Dateiname : "bild1.jpg"  } ,
+ {  Download : "/rest/image/bild2.jpg" ,  Dateiname : "bild2.jpg"  } ,
+ {  Download : "/rest/image/bild3.jpg" ,  Dateiname : "bild3.jpg"  } ,
+ {  Download : "/rest/image/bild4.jpg" ,  Dateiname : "bild4.jpg"  } ,
+ {  Download : "/rest/image/bild5.jpg" ,  Dateiname : "bild5.jpg"  } ,
+ {  Download : "/rest/image/bild6.jpg" ,  Dateiname : "bild6.jpg"  } ,
+ {  Download : "/rest/image/bild7.jpg" ,  Dateiname : "bild7.jpg"  } ,
+ {  Download : "/rest/image/bild8.jpg" ,  Dateiname : "bild8.jpg"  } ,
+ {  Download : "/rest/image/bild9.jpg" ,  Dateiname : "bild9.jpg"  } ,
+ {  Download : "/rest/image/bild10.jpg" ,  Dateiname : "bild10.jpg"  } ,
+ {  Download : "/rest/image/bild11.jpg" ,  Dateiname : "bild11.jpg"  } ,
+ ] ) ;
+ } ;
    
 
 
