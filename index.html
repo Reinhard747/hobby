@@ -1,8 +1,6 @@
-<!DOCTYPE html>
+0<!DOCTYPE html>
 <html lang="de">
 <head>
-
-<meta charset="utf-8">
 <link rel="stylesheet" href="style.css">
 
 
@@ -17,54 +15,947 @@
 
     
 
-    <div id="überschrift">
-        <div id="logo1">
-        <p>Ella's Auto</p>
-        </div>
-        </div>
-        <hr /> 
-        <button style="margin-top: 100px;margin-left: 100px;height: 200px; width: 700px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D14.reset();D15.reset();D16.reset();D17.reset();D18.reset();D19.reset();D20.reset();D22.reset();\n');">Stop</button>
+  <div id="überschrift">
+<div id="logo1">
+<p>Reinhard's Arduino Temperatur und LED's</p>
+</div>
+</div>
 
+
+
+<div id="box2">
+<div id="logo2">
+<p>DH 22</p>
+<form method="post">
+<button OnClick="submit" name="button1"> Temperatur</button>
+</form>
+</div>
+
+
+
+<?php
+global $ip_adresse;
+$ip_adresse="192.168.178.56";
+
+if(isset($_POST['button1'])){ 
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret1 =fread($res,5);
+        global $rows1;
+        $rows1 = $ret1;
+     return $ret1;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    arduino_send_1($arduino_ip,$arduino_port,"Q");
+    ?>
+    <html>
+  
+    <br />
+    <h2 align="center"> <b>
+    Temperatur : <b><?php echo $rows1 ," " , "°C"; ?></b><br />
+    <?php
+}
+    ?>
+</div>
+
+<div id="box4">
+<div id="logo4">
+<p>DS1820</p>
+<form method="post">
+<button OnClick="submit" name="button3"> Temperatur</button>
+</form>
+</div>
+<?php
+
+if(isset($_POST['button3'])){ 
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret3 =fread($res,5);
+        global $rows3;
+        $rows3 = $ret3;
+     return $ret3;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+
+    arduino_send_1($arduino_ip,$arduino_port,"U");
+    ?>
+    <html>
+    <br />
+    <h2 align="center"> <b>
+    Temperatur : <b><?php echo $rows3 ," " , "°C"; ?></b><br />
+    <?php
+}
+    ?>
+ 
+</div>
+
+
+<div id="box6">
+<div id="logo6">
+<p>Alle Sensoren Temperatur und Luft</p>
+<form method="post">
+
+<button OnClick="submit" name="button5"> Alle Sensoren abfragen</button>
+</form>
+</div>
+
+<?php
+
+if(isset($_POST['button5'])){ 
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret1 =fread($res,5);
+    
+        global $rows1;
+        $rows1 = $ret1;
+     return $ret1;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+
+    function arduino_send_2($ip,$port,$command) {
+        $res = fsockopen($ip,$port);
+        if($res) {
+            fwrite($res,$command);
+            $ret2 =fread($res,5);
+            global $rows2;
+            $rows2 = $ret2;
+         return $ret2;
+        } else {
+            echo "Fehler, Kommando konnte nicht abgesetzt werden";
+        }
+        }
+
+
+        function arduino_send_3($ip,$port,$command) {
+            $res = fsockopen($ip,$port);
+            if($res) {
+                fwrite($res,$command);
+                $ret3 =fread($res,5);
+                global $rows3;
+                $rows3 = $ret3;
             
-        <button style="margin-top: -20px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D19.reset();D17.reset();D22.reset();D15.reset();D18.set();D16.set();D20.set();D14.set();\n');">vorwärts</button>
-     
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D18.reset();D16.reset();D20.reset();D14.reset();\n');">vorwärts Stop</button>
-        
-        <hr />    
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D18.reset();D16.reset();D20.reset();D14.reset();D19.set();D17.set();D22.set();D15.set();\n');">rückwärts</button>
-     
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D19.reset();D17.reset();D22.reset();D15.reset();\n');">rückwärts Stop</button>
-        
-        <hr /> 
-        <hr /> 
+             return $ret3;
+            } else {
+                echo "Fehler, Kommando konnte nicht abgesetzt werden";
+            }
+            }
 
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D22.reset();D19.reset();D16.reset();D14.reset();D20.set();D18.set();\n');">rechts</button>
-     
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D20.reset();D18.reset();\n');">rechts Stop</button>
+
+            function arduino_send_4($ip,$port,$command) {
+                $res = fsockopen($ip,$port);
+                if($res) {
+                    fwrite($res,$command);
+                    $ret4 =fread($res,5);
+                    global $rows4;
+                    $rows4 = $ret4;
+                 return $ret4;
+                } else {
+                    echo "Fehler, Kommando konnte nicht abgesetzt werden";
+                }
+                }
+
+
+
+
+arduino_send_1($arduino_ip,$arduino_port,"Q");
+arduino_send_2($arduino_ip,$arduino_port,"P");
+arduino_send_3($arduino_ip,$arduino_port,"U");
+arduino_send_4($arduino_ip,$arduino_port,"T");
+
+
+$timestamp = time();
+$zeit = date("d.m.Y - H:i", $timestamp);
+
+?>
+
+<html>
+<br />
+<hr />
+<h1 align="center"> <b>
+Datum – Uhrzeit            : <b><?php echo $zeit ; ?></b><br />
+<hr />
+<br />
+<hr />
+DH22 ---------- Temperatur: <b><?php echo $rows1 , "°C"; ?></b><br />
+<hr />
+DH22 ----- Luftfeuchtigkeit: <b><?php echo $rows2 , "%"; ?></b><br />
+<hr />
+DS1820 -Innentemperatur: <b><?php echo $rows3 , "°C"; ?></b><br />
+<hr />
+DS18S20 Außentemperatur: <b><?php echo $rows4 , "°C"; ?></b><br />
+<?php
+}
+?>
+</div>
+</div>
+
+<div id="box3">
+<div id="logo3">
+<p>DH 22</p>
+
+<form method="post">
+<button OnClick="submit" name="button2"> Luftfeuchtigkeit</button>
+</form>
+</div>
+
+<?php
+if(isset($_POST['button2'])){ 
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret2 =fread($res,5);
+        global $rows2;
+        $rows2 = $ret2;
+     return $ret2;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    arduino_send_1($arduino_ip,$arduino_port,"P");
+    ?>
+    <html>
+    <br />
+    <h2 align="center"> <b>
+    Luftfeuchtigkeit: <b><?php echo $rows2 ," " , "%"; ?></b><br />
+    <?php
+}
+    ?>
+</div>
+
+<div id="box5">
+<div id="logo5">
+<p>DS18S20</p>
+<form method="post">
+<button OnClick="submit" name="button4"> Temperatur</button>
+</form>
+</div>
+<?php
+
+if(isset($_POST['button4'])){ 
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret4 =fread($res,5);
+        global $rows4;
+        $rows4 = $ret4;
+     return $ret4;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    arduino_send_1($arduino_ip,$arduino_port,"T");
+    ?>
+    <html>
+    <br />
+    <h2 align="center"> <b>
+    Temperatur : <b><?php echo $rows4 ," " , "°C"; ?></b><br />
     
-        <hr /> 
-        <hr /> 
-       
+    <?php
+}
+    ?>
+ 
+</div>
+
+<div id="box9">
+<div id="logo9">
+ 
+<p>LED's einzel schalten</p>
+
+<form method="post">
+
+<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="LED_1">
+<option>LED_1</ option>
+<option>LED_2</ option>
+<option>LED_3</ option>
+<option>LED_4</ option>
+</select>
+<br />
+<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="ein_aus">
+<option>ein</ option>
+<option>aus</ option>
+</select>
+<br />
+
+
+<form method="post">
+<button OnClick="submit" name="button6"> jetzt schalten</button>
+</form>
+</div>
+<?php
+
+if(isset($_POST['button6'])){ 
+
+$hallo1 = $_POST['LED_1'];
+$hallo2 = $_POST['ein_aus'];
+
+if($hallo1 == LED_1) {
+ $pin = 7;
+}
+if($hallo1 == LED_2) {
+ $pin = 6;
+}
+if($hallo1 == LED_3) {
+ $pin = 5;
+}
+if($hallo1 == LED_4) {
+ $pin = 3;
+}
+if($hallo2 == ein) {
+ $led = 1;
+} else {
+ $led = 0;
+}
+$arduino_ip="$ip_adresse";
+$arduino_port="80";
+function arduino_send_1($ip,$port,$command) {
+ $res = fsockopen($ip,$port);
+ if($res) {
+     fwrite($res,$command);
+     $ret1 =fread($res,5);
+       global $rows1;
+     $rows1 = $ret1;;
+   return $ret1;
+ } else {
+     echo "Fehler, Kommando konnte nicht abgesetzt werden";
+ }
+}
+arduino_send_1($arduino_ip,$arduino_port,"S".chr($pin).chr($led));
+}
+?>
+</div>
+</div>
+
+<div id="box7">
+<div id="logo7">
+<p>Datenbank</p>
+<form method="post">
+
+<button OnClick="submit" name="button9"> Datenbank abfragen</button>
+</form>
+</div>
+
+<?php
+
+
+if(isset($_POST['button9'])){ 
+header('Location: http://gi337wympadr8z2.synology.me/Webseiten/ver1.php'); exit; 
+}
+
+?>
+
+
+</div>
+
+<div id="box8">
+<div id="logo8">
+<p>Daten speichern</p>
+<form method="post">
+
+<button OnClick="submit" name="button10"> Daten speichern</button>
+</form>
+</div>
+<?php
+
+if(isset($_POST['button10'])){ 
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret1 =fread($res,5);
     
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D18.reset();D16.reset();D20.reset();D14.reset();D16.set();D14.set();\n');">links</button>
-        
-        <button style="margin-top: 50px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D16.reset();D14.reset();\n');">links Stop</button>
-        
-        <hr /> 
-        <hr />
+        global $rows1;
+        $rows1 = $ret1;
+     return $ret1;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    
+    function arduino_send_2($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret2 =fread($res,5);
+        global $rows2;
+        $rows2 = $ret2;
+     return $ret2;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    
+    function arduino_send_3($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret3 =fread($res,5);
+        global $rows3;
+        $rows3 = $ret3;
+    
+     return $ret3;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    
+    function arduino_send_4($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret4 =fread($res,5);
+        global $rows4;
+        $rows4 = $ret4;
+     return $ret4;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    
+    arduino_send_1($arduino_ip,$arduino_port,"Q");
+    arduino_send_2($arduino_ip,$arduino_port,"P");
+    arduino_send_3($arduino_ip,$arduino_port,"U");
+    arduino_send_4($arduino_ip,$arduino_port,"T");
+    
+    
+    $timestamp = time();
+    $zeit = date("d.m.Y - H:i", $timestamp);
+    
 
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D22.set();D18.set();D16.set();D15.set();\n');">quer rechts</button>
-        
-        <button style="margin-top: 50px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D22.reset();D18.reset();D16.reset();D15.reset();\n');">quer rechts Stop</button>
-        
-        <hr /> 
-        <hr />
 
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D20.set();D19.set();D17.set();D14.set();\n');">quer links</button>
-        
-        <button style="margin-top: 50px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D20.reset();D19.reset();D17.reset();D14.reset();\n');">quer links Stop</button>
-        
 
+
+    $verbindung = mysqli_connect("localhost:3307", "Reinhard", "HalloInge5319üäö" ,"DS1620") or die ("Fehler Reihard"); 
+    // localhost:3306 = Maria DB5
+    // localhost:3307 = Maria DB10
+    mysqli_select_db($verbindung , "DS1620")
+    or die ("Fehler_2 Reihard");
+    
+    $Datum_Uhrzeit = $zeit;
+    $DH_Temp = $rows1;
+    $DH_Luft = $rows2;
+    $Innen_Temp = $rows3;
+    $Aussen_Temp = $rows4;
+    
+    //echo $rows;
+    
+    $eintrag = "INSERT INTO arduino_temp_luft
+    (Datum_Uhrzeit, DH_Temp, DH_Luft, Innen_Temp, Aussen_Temp)
+    
+    VALUES
+    ('$Datum_Uhrzeit','$DH_Temp','$DH_Luft','$Innen_Temp','$Aussen_Temp')";
+    
+    $eintragen = mysqli_query($verbindung , $eintrag);
+    
+    mysqli_close($verbindung);
+        
+    ?>
+    <html>
+    <br />
+    <hr />
+    <h1 align="center"> <b>
+    Datum – Uhrzeit            : <b><?php echo $zeit ; ?></b><br />
+    <hr />
+    <br />
+    <hr />
+    DH22 ---------- Temperatur: <b><?php echo $rows1 , "°C"; ?></b><br />
+    <hr />
+    DH22 ----- Luftfeuchtigkeit: <b><?php echo $rows2 , "%"; ?></b><br />
+    <hr />
+    DS1820 -Innentemperatur: <b><?php echo $rows3 , "°C"; ?></b><br />
+    <hr />
+    DS18S20 Außentemperatur: <b><?php echo $rows4 , "°C"; ?></b><br /> 
+    <?php
+    }
+    ?>
+
+</div>
+</div>
+
+<div id="box10">
+<div id="logo10">
+<p>LED's alle schalten</p>
+<br />
+<form method="post">
+
+<button OnClick="submit" name="button7"> LED's abfragen</button>
+</form>
+</div>
+
+<br />
+<br />
+<?php
+
+
+if(isset($_POST['button7'])){
+
+$arduino_ip="$ip_adresse";
+$arduino_port="80";
+function arduino_send_1($ip,$port,$command) {
+$res = fsockopen($ip,$port);
+if($res) {
+    fwrite($res,$command);
+    $ret1 =fread($res,5);
+    global $rows1;
+    $rows1 = $ret1;
+ return $ret1;
+} else {
+    echo "Fehler, Kommando konnte nicht abgesetzt werden";
+}
+}
+
+arduino_send_1($arduino_ip,$arduino_port,"R".chr(7).chr(0));
+if($rows1 == 1) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 1 = ein </b><br />
+ <?php
+}
+if($rows1 == 0) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 1 = aus </b><br />
+ <?php
+}
+
+
+arduino_send_1($arduino_ip,$arduino_port,"R".chr(6).chr(0));
+
+if($rows1 == 1) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 2 = ein </b><br />
+<?php
+}
+if($rows1 == 0) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 2 = aus </b><br />
+ <?php
+}
+
+
+arduino_send_1($arduino_ip,$arduino_port,"R".chr(5).chr(0));
+
+if($rows1 == 1) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 3 = ein </b><br />
+<?php
+}
+if($rows1 == 0) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 3 = aus </b><br />
+ <?php
+}
+
+
+arduino_send_1($arduino_ip,$arduino_port,"R".chr(3).chr(0));
+
+if($rows1 == 1) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 4 = ein </b><br />
+ <br />
+ <?php
+}
+if($rows1 == 0) {
+ ?>
+ <html>
+ <h2 align="center"> <b>
+ LED 4 = aus </b><br />
+ <br />
+ <?php
+}
+}
+?>
+
+<form action="" method="post">
+
+<input type="radio" name="led1" value="1"> LED 1 ein <input type="radio" name="led1" value="0"> LED 1 aus<br>
+<input type="radio" name="led2" value="1"> LED 2 ein <input type="radio" name="led2" value="0"> LED 2 aus<br>
+<input type="radio" name="led3" value="1"> LED 3 ein <input type="radio" name="led3" value="0"> LED 3 aus<br>
+<input type="radio" name="led4" value="1"> LED 4 ein <input type="radio" name="led4" value="0"> LED 4 aus<br>
+<br />
+</p>
+
+<button OnClick="submit" name="button8"> LED's schalten</button>
+</form>
+
+<?php
+
+if(isset($_POST['button8'])){ 
+
+$arduino_ip="$ip_adresse";
+$arduino_port="80";
+function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret1 =fread($res,5);
+
+          global $rows1;
+        $rows1 = $ret1;;
+      return $ret1;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+}
+
+if($_POST['led1'] == "1") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(7).chr(1));
+    }
+    if($_POST['led1'] == "0") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(7).chr(0));
+    }
+    
+    if($_POST['led2'] == "1") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(6).chr(1));
+    }
+    if($_POST['led2'] == "0") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(6).chr(0));
+    }
+    
+    if($_POST['led3'] == "1") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(5).chr(1));
+    }
+    if($_POST['led3'] == "0") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(5).chr(0));
+    }
+    
+    if($_POST['led4'] == "1") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(3).chr(1));
+    }
+    if($_POST['led4'] == "0") {
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr(3).chr(0));
+    }
+    
+    arduino_send_1($arduino_ip,$arduino_port,"R".chr(7).chr(0));
+    if($rows1 == 1) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     <br />
+     LED 1 = ein </b><br />
+     <?php
+    }
+    if($rows1 == 0) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     <br />
+     LED 1 = aus </b><br />
+     <?php
+    }
+    
+    
+    arduino_send_1($arduino_ip,$arduino_port,"R".chr(6).chr(0));
+    
+    if($rows1 == 1) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     LED 2 = ein </b><br />
+    <?php
+    }
+    if($rows1 == 0) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     LED 2 = aus </b><br />
+     <?php
+    }
+    
+    
+    arduino_send_1($arduino_ip,$arduino_port,"R".chr(5).chr(0));
+    
+    if($rows1 == 1) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     LED 3 = ein </b><br />
+    <?php
+    }
+    if($rows1 == 0) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     LED 3 = aus </b><br />
+     <?php
+    }
+
+    arduino_send_1($arduino_ip,$arduino_port,"R".chr(3).chr(0));
+
+    if($rows1 == 1) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     LED 4 = ein </b><br />
+     <br />
+     <?php
+     
+    }
+    if($rows1 == 0) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     LED 4 = aus </b><br />
+     <br />
+     <?php
+    }
+    }
+    
+    ?>
+    
+    </div>
+
+    <div id="box11">
+<div id="logo11">
+ 
+<p>einzel Schalter abfragen</p>
+
+<form method="post">
+<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="Schalter">
+<option>Schalter_1</ option>
+<option>Schalter_2</ option>
+</select>
+<br />
+
+<form method="post">
+<button OnClick="submit" name="button11"> jetzt abfragen</button>
+</form>
+</div>
+
+<?php
+
+if(isset($_POST['button11'])){ 
+
+$hallo1 = $_POST['Schalter'];
+
+if($hallo1 == Schalter_1) {
+ $pin = 8; $Schalter = "Schalter 1";
+}
+if($hallo1 == Schalter_2) {
+ $pin = 9; $Schalter = "Schalter 2";
+}
+
+$arduino_ip="$ip_adresse";
+$arduino_port="80";
+function arduino_send_1($ip,$port,$command) {
+ $res = fsockopen($ip,$port);
+ if($res) {
+     fwrite($res,$command);
+     $ret1 =fread($res,1);
+       global $rows1;
+     $rows1 = $ret1;;
+   return $ret1;
+ } else {
+     echo "Fehler, Kommando konnte nicht abgesetzt werden";
+ }
+}
+
+arduino_send_1($arduino_ip,$arduino_port,"R".chr($pin).chr(0));
+
+if($rows1 == 1) {
+ 
+$zustand = "ein";
+
+} else {
+    $zustand = "aus";;
+}
+}
+?>
+
+<h2 align="center"> <b>
+<br />
+<br /> 
+
+<?php echo $Schalter , " " ," " , $zustand;
+
+
+?>
+</div>
+</div>
+
+<div id="box12">
+<div id="logo12">
+ 
+<p>alle Schalter abfragen</p>
+
+<form method="post">
+
+<form method="post">
+<button OnClick="submit" name="button12"> jetzt abfragen</button>
+</form>
+</div>
+<?php
+
+if(isset($_POST['button12'])){ 
+
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+    $res = fsockopen($ip,$port);
+    if($res) {
+        fwrite($res,$command);
+        $ret1 =fread($res,5);
+        global $rows1;
+        $rows1 = $ret1;
+     return $ret1;
+    } else {
+        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    }
+    }
+    
+    arduino_send_1($arduino_ip,$arduino_port,"R".chr(8).chr(0));
+    if($rows1 == 1) {
+     ?>
+     <html>
+     <br />
+     <hr />
+     <h2 align="center"> <b>
+     Pin 8 Schalter 1 = ein </b><br />
+     <hr />
+     <?php
+    }
+    if($rows1 == 0) {
+     ?>
+     <html>
+     <br />
+     <hr />
+      <h2 align="center"> <b>
+     Pin 8 Schalter 1 = aus </b><br />
+     <hr />
+     <?php
+    }
+    
+    arduino_send_1($arduino_ip,$arduino_port,"R".chr(9).chr(0));
+    if($rows1 == 1) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     Pin 9 Schalter 2 = ein </b><br />
+     <hr />
+    <?php
+    }
+    if($rows1 == 0) {
+     ?>
+     <html>
+     <h2 align="center"> <b>
+     Pin 9 Schalter 2 = aus </b><br />
+     <hr />
+     <?php
+    }
+}
+?>
+</div>
+</div>
+
+<div id="box13">
+<div id="logo13">
+ 
+<p>LED's einzel schalten_2</p>
+
+<form method="post">
+
+<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="LED_1">
+<option>LED_1</ option>
+<option>LED_2</ option>
+<option>LED_3</ option>
+<option>LED_4</ option>
+</select>
+<br />
+<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="ein_aus">
+<option>ein</ option>
+<option>aus</ option>
+</select>
+<br />
+
+
+<form method="post">
+<button OnClick="submit" name="button13"> jetzt schalten</button>
+</form>
+</div>
+<?php
+
+if(isset($_POST['button13'])){ 
+
+    $hallo1 = $_POST['LED_1'];
+    $hallo2 = $_POST['ein_aus'];
+    
+    if($hallo1 == LED_1) {
+     $pin = 7;
+    }
+    if($hallo1 == LED_2) {
+     $pin = 6;
+    }
+    if($hallo1 == LED_3) {
+     $pin = 5;
+    }
+    if($hallo1 == LED_4) {
+     $pin = 3;
+    }
+    if($hallo2 == ein) {
+     $led = 1;
+    } else {
+     $led = 0;
+    }
+    $arduino_ip="$ip_adresse";
+    $arduino_port="80";
+    function arduino_send_1($ip,$port,$command) {
+     $res = fsockopen($ip,$port);
+     if($res) {
+         fwrite($res,$command);
+         $ret1 =fread($res,5);
+           global $rows1;
+         $rows1 = $ret1;;
+       return $ret1;
+     } else {
+         echo "Fehler, Kommando konnte nicht abgesetzt werden";
+     }
+    }
+    arduino_send_1($arduino_ip,$arduino_port,"S".chr($pin).chr($led));
+    }
+    ?>
+    </div>
+    </div>
+
+
+</div>
+</div>
 
 
      
