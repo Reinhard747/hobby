@@ -15,950 +15,708 @@
 
     
 
-  <div id="überschrift">
+<div id="überschrift">
 <div id="logo1">
-<p>Reinhard's Arduino Temperatur und LED's</p>
+<p>Reinhard's ---  MDBT42Q mit DL2416 Anzeige ohne Treiber</p>
 </div>
 </div>
-
-
-
-<div id="box2">
-<div id="logo2">
-<p>DH 22</p>
-<form method="post">
-<button OnClick="submit" name="button1"> Temperatur</button>
-</form>
-</div>
-
-
-
-<?php
-global $ip_adresse;
-$ip_adresse="192.168.178.56";
-
-if(isset($_POST['button1'])){ 
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret1 =fread($res,5);
-        global $rows1;
-        $rows1 = $ret1;
-     return $ret1;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-    arduino_send_1($arduino_ip,$arduino_port,"Q");
-    ?>
-    <html>
-  
-    <br />
-    <h2 align="center"> <b>
-    Temperatur : <b><?php echo $rows1 ," " , "°C"; ?></b><br />
-    <?php
-}
-    ?>
-</div>
-
-<div id="box4">
-<div id="logo4">
-<p>DS1820</p>
-<form method="post">
-<button OnClick="submit" name="button3"> Temperatur</button>
-</form>
-</div>
-<?php
-
-if(isset($_POST['button3'])){ 
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret3 =fread($res,5);
-        global $rows3;
-        $rows3 = $ret3;
-     return $ret3;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-
-    arduino_send_1($arduino_ip,$arduino_port,"U");
-    ?>
-    <html>
-    <br />
-    <h2 align="center"> <b>
-    Temperatur : <b><?php echo $rows3 ," " , "°C"; ?></b><br />
-    <?php
-}
-    ?>
  
-</div>
-
-
-<div id="box6">
-<div id="logo6">
-<p>Alle Sensoren Temperatur und Luft</p>
-<form method="post">
-
-<button OnClick="submit" name="button5"> Alle Sensoren abfragen</button>
-</form>
-</div>
-
-<?php
-
-if(isset($_POST['button5'])){ 
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret1 =fread($res,5);
-    
-        global $rows1;
-        $rows1 = $ret1;
-     return $ret1;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-
-    function arduino_send_2($ip,$port,$command) {
-        $res = fsockopen($ip,$port);
-        if($res) {
-            fwrite($res,$command);
-            $ret2 =fread($res,5);
-            global $rows2;
-            $rows2 = $ret2;
-         return $ret2;
-        } else {
-            echo "Fehler, Kommando konnte nicht abgesetzt werden";
-        }
-        }
-
-
-        function arduino_send_3($ip,$port,$command) {
-            $res = fsockopen($ip,$port);
-            if($res) {
-                fwrite($res,$command);
-                $ret3 =fread($res,5);
-                global $rows3;
-                $rows3 = $ret3;
-            
-             return $ret3;
-            } else {
-                echo "Fehler, Kommando konnte nicht abgesetzt werden";
-            }
-            }
-
-
-            function arduino_send_4($ip,$port,$command) {
-                $res = fsockopen($ip,$port);
-                if($res) {
-                    fwrite($res,$command);
-                    $ret4 =fread($res,5);
-                    global $rows4;
-                    $rows4 = $ret4;
-                 return $ret4;
-                } else {
-                    echo "Fehler, Kommando konnte nicht abgesetzt werden";
-                }
-                }
-
-
-
-
-arduino_send_1($arduino_ip,$arduino_port,"Q");
-arduino_send_2($arduino_ip,$arduino_port,"P");
-arduino_send_3($arduino_ip,$arduino_port,"U");
-arduino_send_4($arduino_ip,$arduino_port,"T");
-
-
-$timestamp = time();
-$zeit = date("d.m.Y - H:i", $timestamp);
-
-?>
-
-<html>
-<br />
-<hr />
-<h1 align="center"> <b>
-Datum – Uhrzeit            : <b><?php echo $zeit ; ?></b><br />
-<hr />
-<br />
-<hr />
-DH22 ---------- Temperatur: <b><?php echo $rows1 , "°C"; ?></b><br />
-<hr />
-DH22 ----- Luftfeuchtigkeit: <b><?php echo $rows2 , "%"; ?></b><br />
-<hr />
-DS1820 -Innentemperatur: <b><?php echo $rows3 , "°C"; ?></b><br />
-<hr />
-DS18S20 Außentemperatur: <b><?php echo $rows4 , "°C"; ?></b><br />
-<?php
-}
-?>
-</div>
-</div>
-
-<div id="box3">
-<div id="logo3">
-<p>DH 22</p>
-
-<form method="post">
-<button OnClick="submit" name="button2"> Luftfeuchtigkeit</button>
-</form>
-</div>
-
-<?php
-if(isset($_POST['button2'])){ 
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret2 =fread($res,5);
-        global $rows2;
-        $rows2 = $ret2;
-     return $ret2;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-    arduino_send_1($arduino_ip,$arduino_port,"P");
-    ?>
-    <html>
-    <br />
-    <h2 align="center"> <b>
-    Luftfeuchtigkeit: <b><?php echo $rows2 ," " , "%"; ?></b><br />
-    <?php
-}
-    ?>
-</div>
-
-<div id="box5">
-<div id="logo5">
-<p>DS18S20</p>
-<form method="post">
-<button OnClick="submit" name="button4"> Temperatur</button>
-</form>
-</div>
-<?php
-
-if(isset($_POST['button4'])){ 
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret4 =fread($res,5);
-        global $rows4;
-        $rows4 = $ret4;
-     return $ret4;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-    arduino_send_1($arduino_ip,$arduino_port,"T");
-    ?>
-    <html>
-    <br />
-    <h2 align="center"> <b>
-    Temperatur : <b><?php echo $rows4 ," " , "°C"; ?></b><br />
-    
-    <?php
-}
-    ?>
- 
-</div>
 
 <div id="box9">
 <div id="logo9">
  
-<p>LED's einzel schalten</p>
+<p>Bilder laden</p>
 
 <form method="post">
 
 <select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="LED_1">
-<option>LED_1</ option>
-<option>LED_2</ option>
-<option>LED_3</ option>
-<option>LED_4</ option>
-</select>
-<br />
-<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="ein_aus">
-<option>ein</ option>
-<option>aus</ option>
+<option>Bild_1</ option>
+<option>Bild_2</ option>
+<option>Bild_3</ option>
+<option>Bild_4</ option>
+<option>Bild_5</ option>
+<option>Bild_6</ option>
+<option>Bild_7</ option>
+<option>Bild_8</ option>
+<option>Bild_9</ option>
+<option>Bild_10</ option>
+<option>Bild_11</ option>
+<option>Bild_12</ option>
+<option>Bild_13</ option>
+<option>Bild_14</ option>
+<option>Bild_15</ option>
+<option>Bild_16</ option>
+<option>Bild_17</ option>
+<option>Bild_18</ option>
+<option>Bild_19</ option>
+<option>Bild_20</ option>
+<option>Bild_21</ option>
+<option>Bild_22</ option>
+<option>Bild_23</ option>
+<option>Bild_24</ option>
+<option>Bild_25</ option>
+<option>Bild_26</ option>
+<option>Bild_27</ option>
+<option>Bild_28</ option>
+<option>Bild_29</ option>
+<option>Bild_30</ option>
+<option>Bild_31</ option>
+<option>Bild_32</ option>
+<option>Bild_33</ option>
+<option>Bild_34</ option>
+<option>Bild_35</ option>
+
 </select>
 <br />
 
 
 <form method="post">
-<button OnClick="submit" name="button6"> jetzt schalten</button>
+<button OnClick="submit" name="button6"> jetzt laden</button>
+<button OnClick="submit" name="button7"> löschen</button>
 </form>
 </div>
+
+<br />
+
 <?php
+
+if(isset($_POST['button7'])){
+ 
+ ('Location: http://gi337wympadr8z2.synology.me/Webseiten60/ver4.php');
+ 
+}
+
 
 if(isset($_POST['button6'])){ 
 
 $hallo1 = $_POST['LED_1'];
-$hallo2 = $_POST['ein_aus'];
 
-if($hallo1 == LED_1) {
- $pin = 7;
-}
-if($hallo1 == LED_2) {
- $pin = 6;
-}
-if($hallo1 == LED_3) {
- $pin = 5;
-}
-if($hallo1 == LED_4) {
- $pin = 3;
-}
-if($hallo2 == ein) {
- $led = 1;
-} else {
- $led = 0;
-}
-$arduino_ip="$ip_adresse";
-$arduino_port="80";
-function arduino_send_1($ip,$port,$command) {
- $res = fsockopen($ip,$port);
- if($res) {
-     fwrite($res,$command);
-     $ret1 =fread($res,5);
-       global $rows1;
-     $rows1 = $ret1;;
-   return $ret1;
- } else {
-     echo "Fehler, Kommando konnte nicht abgesetzt werden";
- }
-}
-arduino_send_1($arduino_ip,$arduino_port,"S".chr($pin).chr($led));
-}
-?>
-</div>
-</div>
-
-<div id="box7">
-<div id="logo7">
-<p>Datenbank</p>
-<form method="post">
-
-<button OnClick="submit" name="button9"> Datenbank abfragen</button>
-</form>
-</div>
-
+if($hallo1 == Bild_1) {
+ ?>
+<br />
+Bild_1
+<img src='Bild1.jpg' width='1000' height='800'>
 <?php
-
-
-if(isset($_POST['button9'])){ 
-header('Location: http://gi337wympadr8z2.synology.me/Webseiten/ver1.php'); exit; 
 }
 
+if($hallo1 == Bild_2) {
 ?>
+<br />
+Bild_2
+<img src='Bild2.jpg' width='1000' height='800'>
+ <?php
+}
+
+if($hallo1 == Bild_3) {
+ ?>
+ <br />
+ Bild_3
+ <img src='Bild3.jpg' width='1000' height='800'>
+ <?php
+}
+
+if($hallo1 == Bild_4) {
+?>
+<br />
+Bild_4
+<img src='Bild4.jpg' width='1000' height='800'>
+ <?php
+}
+if($hallo1 == Bild_5) {
+    ?>
+   <br />
+   Bild_5
+    <img src='Bild5.jpg' width='1000' height='800'>
+    <?php
+   }
+   
+   if($hallo1 == Bild_6) {
+   ?>
+   <br />
+   Bild_6
+   <img src='Bild6.jpg' width='1000' height='800'>
+    <?php
+   }
+   
+   if($hallo1 == Bild_7) {
+    ?>
+    <br />
+    Bild_7
+    <img src='Bild7.jpg' width='1000' height='800'>
+    <?php
+   }
+   
+   if($hallo1 == Bild_8) {
+   ?>
+   <br />
+   Bild_8
+   <img src='Bild8.jpg' width='1000' height='800'>
+    <?php
+   }
+   if($hallo1 == Bild_9) {
+    ?>
+   <br />
+   Bild_9
+    <img src='Bild9.jpg' width='1000' height='800'>
+    <?php
+   }
+   
+   if($hallo1 == Bild_10) {
+   ?>
+   <br />
+   Bild_10
+   <img src='Bild10.jpg' width='1000' height='800'>
+    <?php
+   }
+   
+   if($hallo1 == Bild_11) {
+    ?>
+    <br />
+    Bild_11
+    <img src='Bild11.jpg' width='1000' height='800'>
+    <?php
+   }
+   
+   if($hallo1 == Bild_12) {
+   ?>
+   <br />
+   Bild_12
+   <img src='Bild12.jpg' width='1000' height='800'>
+    <?php
+   }
 
 
-</div>
-
-<div id="box8">
-<div id="logo8">
-<p>Daten speichern</p>
-<form method="post">
-
-<button OnClick="submit" name="button10"> Daten speichern</button>
-</form>
-</div>
-<?php
-
-if(isset($_POST['button10'])){ 
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret1 =fread($res,5);
-    
-        global $rows1;
-        $rows1 = $ret1;
-     return $ret1;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+   if($hallo1 == Bild_13) {
+    ?>
+    <br />
+    Bild_13
+    <img src='Bild13.jpg' width='1000' height='800'>
+     <?php
     }
+    
+    if($hallo1 == Bild_14) {
+     ?>
+     <br />
+     Bild_14
+     <img src='Bild14.jpg' width='1000' height='800'>
+     <?php
     }
     
-    function arduino_send_2($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret2 =fread($res,5);
-        global $rows2;
-        $rows2 = $ret2;
-     return $ret2;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
+    if($hallo1 == Bild_15) {
+    ?>
+    <br />
+    Bild_15
+    <img src='Bild15.jpg' width='1000' height='800'>
+     <?php
     }
-    }
-    
-    function arduino_send_3($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret3 =fread($res,5);
-        global $rows3;
-        $rows3 = $ret3;
-    
-     return $ret3;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-    
-    function arduino_send_4($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret4 =fread($res,5);
-        global $rows4;
-        $rows4 = $ret4;
-     return $ret4;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-    
-    arduino_send_1($arduino_ip,$arduino_port,"Q");
-    arduino_send_2($arduino_ip,$arduino_port,"P");
-    arduino_send_3($arduino_ip,$arduino_port,"U");
-    arduino_send_4($arduino_ip,$arduino_port,"T");
-    
-    
-    $timestamp = time();
-    $zeit = date("d.m.Y - H:i", $timestamp);
-    
 
-
-
-
-    $verbindung = mysqli_connect("localhost:3307", "Reinhard", "HalloInge5319üäö" ,"DS1620") or die ("Fehler Reihard"); 
-    // localhost:3306 = Maria DB5
-    // localhost:3307 = Maria DB10
-    mysqli_select_db($verbindung , "DS1620")
-    or die ("Fehler_2 Reihard");
-    
-    $Datum_Uhrzeit = $zeit;
-    $DH_Temp = $rows1;
-    $DH_Luft = $rows2;
-    $Innen_Temp = $rows3;
-    $Aussen_Temp = $rows4;
-    
-    //echo $rows;
-    
-    $eintrag = "INSERT INTO arduino_temp_luft
-    (Datum_Uhrzeit, DH_Temp, DH_Luft, Innen_Temp, Aussen_Temp)
-    
-    VALUES
-    ('$Datum_Uhrzeit','$DH_Temp','$DH_Luft','$Innen_Temp','$Aussen_Temp')";
-    
-    $eintragen = mysqli_query($verbindung , $eintrag);
-    
-    mysqli_close($verbindung);
+    if($hallo1 == Bild_16) {
+     ?>
+     <br />
+     Bild_16
+     <img src='Bild16.jpg' width='1000' height='800'>
+     <?php
+     }
         
-    ?>
-    <html>
-    <br />
-    <hr />
-    <h1 align="center"> <b>
-    Datum – Uhrzeit            : <b><?php echo $zeit ; ?></b><br />
-    <hr />
-    <br />
-    <hr />
-    DH22 ---------- Temperatur: <b><?php echo $rows1 , "°C"; ?></b><br />
-    <hr />
-    DH22 ----- Luftfeuchtigkeit: <b><?php echo $rows2 , "%"; ?></b><br />
-    <hr />
-    DS1820 -Innentemperatur: <b><?php echo $rows3 , "°C"; ?></b><br />
-    <hr />
-    DS18S20 Außentemperatur: <b><?php echo $rows4 , "°C"; ?></b><br /> 
-    <?php
-    }
-    ?>
-
-</div>
-</div>
-
-<div id="box10">
-<div id="logo10">
-<p>LED's alle schalten</p>
-<br />
-<form method="post">
-
-<button OnClick="submit" name="button7"> LED's abfragen</button>
-</form>
-</div>
-
-<br />
-<br />
-<?php
-
-
-if(isset($_POST['button7'])){
-
-$arduino_ip="$ip_adresse";
-$arduino_port="80";
-function arduino_send_1($ip,$port,$command) {
-$res = fsockopen($ip,$port);
-if($res) {
-    fwrite($res,$command);
-    $ret1 =fread($res,5);
-    global $rows1;
-    $rows1 = $ret1;
- return $ret1;
-} else {
-    echo "Fehler, Kommando konnte nicht abgesetzt werden";
-}
-}
-
-arduino_send_1($arduino_ip,$arduino_port,"R".chr(7).chr(0));
-if($rows1 == 1) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 1 = ein </b><br />
- <?php
-}
-if($rows1 == 0) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 1 = aus </b><br />
- <?php
-}
-
-
-arduino_send_1($arduino_ip,$arduino_port,"R".chr(6).chr(0));
-
-if($rows1 == 1) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 2 = ein </b><br />
-<?php
-}
-if($rows1 == 0) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 2 = aus </b><br />
- <?php
-}
-
-
-arduino_send_1($arduino_ip,$arduino_port,"R".chr(5).chr(0));
-
-if($rows1 == 1) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 3 = ein </b><br />
-<?php
-}
-if($rows1 == 0) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 3 = aus </b><br />
- <?php
-}
-
-
-arduino_send_1($arduino_ip,$arduino_port,"R".chr(3).chr(0));
-
-if($rows1 == 1) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 4 = ein </b><br />
- <br />
- <?php
-}
-if($rows1 == 0) {
- ?>
- <html>
- <h2 align="center"> <b>
- LED 4 = aus </b><br />
- <br />
- <?php
-}
-}
-?>
-
-<form action="" method="post">
-
-<input type="radio" name="led1" value="1"> LED 1 ein <input type="radio" name="led1" value="0"> LED 1 aus<br>
-<input type="radio" name="led2" value="1"> LED 2 ein <input type="radio" name="led2" value="0"> LED 2 aus<br>
-<input type="radio" name="led3" value="1"> LED 3 ein <input type="radio" name="led3" value="0"> LED 3 aus<br>
-<input type="radio" name="led4" value="1"> LED 4 ein <input type="radio" name="led4" value="0"> LED 4 aus<br>
-<br />
-</p>
-
-<button OnClick="submit" name="button8"> LED's schalten</button>
-</form>
-
-<?php
-
-if(isset($_POST['button8'])){ 
-
-$arduino_ip="$ip_adresse";
-$arduino_port="80";
-function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret1 =fread($res,5);
-
-          global $rows1;
-        $rows1 = $ret1;;
-      return $ret1;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-}
-
-if($_POST['led1'] == "1") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(7).chr(1));
-    }
-    if($_POST['led1'] == "0") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(7).chr(0));
-    }
-    
-    if($_POST['led2'] == "1") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(6).chr(1));
-    }
-    if($_POST['led2'] == "0") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(6).chr(0));
-    }
-    
-    if($_POST['led3'] == "1") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(5).chr(1));
-    }
-    if($_POST['led3'] == "0") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(5).chr(0));
-    }
-    
-    if($_POST['led4'] == "1") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(3).chr(1));
-    }
-    if($_POST['led4'] == "0") {
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr(3).chr(0));
-    }
-    
-    arduino_send_1($arduino_ip,$arduino_port,"R".chr(7).chr(0));
-    if($rows1 == 1) {
+     if($hallo1 == Bild_17) {
      ?>
-     <html>
-     <h2 align="center"> <b>
      <br />
-     LED 1 = ein </b><br />
+     Bild_17
+     <img src='Bild17.jpg' width='1000' height='800'>
      <?php
-    }
-    if($rows1 == 0) {
+     }
+        
+     if($hallo1 == Bild_18) {
      ?>
-     <html>
-     <h2 align="center"> <b>
      <br />
-     LED 1 = aus </b><br />
+     Bild_18
+     <img src='Bild18.jpg' width='1000' height='800'>
      <?php
-    }
-    
-    
-    arduino_send_1($arduino_ip,$arduino_port,"R".chr(6).chr(0));
-    
-    if($rows1 == 1) {
-     ?>
-     <html>
-     <h2 align="center"> <b>
-     LED 2 = ein </b><br />
-    <?php
-    }
-    if($rows1 == 0) {
-     ?>
-     <html>
-     <h2 align="center"> <b>
-     LED 2 = aus </b><br />
-     <?php
-    }
-    
-    
-    arduino_send_1($arduino_ip,$arduino_port,"R".chr(5).chr(0));
-    
-    if($rows1 == 1) {
-     ?>
-     <html>
-     <h2 align="center"> <b>
-     LED 3 = ein </b><br />
-    <?php
-    }
-    if($rows1 == 0) {
-     ?>
-     <html>
-     <h2 align="center"> <b>
-     LED 3 = aus </b><br />
-     <?php
-    }
-
-    arduino_send_1($arduino_ip,$arduino_port,"R".chr(3).chr(0));
-
-    if($rows1 == 1) {
-     ?>
-     <html>
-     <h2 align="center"> <b>
-     LED 4 = ein </b><br />
-     <br />
-     <?php
+     }
      
-    }
-    if($rows1 == 0) {
+     
+     if($hallo1 == Bild_19) {
      ?>
-     <html>
-     <h2 align="center"> <b>
-     LED 4 = aus </b><br />
      <br />
+     Bild_19
+     <img src='Bild19.jpg' width='1000' height='800'>
      <?php
-    }
-    }
-    
-    ?>
-    
-    </div>
+     }
+         
+     if($hallo1 == Bild_20) {
+     ?>
+     <br />
+     Bild_20
+     <img src='Bild20.jpg' width='1000' height='800'>
+     <?php
+     }
+         
+     if($hallo1 == Bild_21) {
+     ?>
+     <br />
+     Bild_21
+     <img src='Bild21.jpg' width='1000' height='800'>
+     <?php
+     }
 
-    <div id="box11">
+     if($hallo1 == Bild_22) {
+     ?>
+     <br />
+     Bild_22
+     <img src='Bild22.jpg' width='1000' height='800'>
+     <?php
+     }
+       
+     if($hallo1 == Bild_23) {
+     ?>
+     <br />
+     Bild_23
+     <img src='Bild23.jpg' width='1000' height='800'>
+     <?php
+     }
+   
+     if($hallo1 == Bild_24) {
+     ?>
+     <br />
+     Bild_24
+     <img src='Bild24.jpg' width='1000' height='800'>
+     <?php
+     }
+           
+     if($hallo1 == Bild_25) {
+     ?>
+     <br />
+     Bild_25
+     <img src='Bild25.jpg' width='1000' height='800'>
+     <?php
+     }
+           
+     if($hallo1 == Bild_26) {
+     ?>
+     <br />
+     Bild_26
+     <img src='Bild26.jpg' width='1000' height='800'>
+     <?php
+     }
+        
+        
+     if($hallo1 == Bild_27) {
+     ?>
+     <br />
+     Bild_27
+     <img src='Bild27.jpg' width='1000' height='800'>
+     <?php
+     }
+
+     if($hallo1 == Bild_28) {
+     ?>
+     <br />
+     Bild_28
+     <img src='Bild28.jpg' width='1000' height='800'>
+     <?php
+     }
+
+     if($hallo1 == Bild_29) {
+     ?>
+     <br />
+     Bild_29
+     <img src='Bild29.jpg' width='1000' height='800'>
+     <?php
+     }
+   
+     if($hallo1 == Bild_30) {
+     ?>
+     <br />
+     Bild_30
+     <img src='Bild30.jpg' width='1000' height='800'>
+     <?php
+     }
+
+     if($hallo1 == Bild_31) {
+     ?>
+     <br />
+     Bild_31
+     <img src='Bild31.jpg' width='1000' height='800'>
+     <?php
+     }
+
+     if($hallo1 == Bild_32) {
+     ?>
+     <br />
+     Bild_32
+     <img src='Bild32.jpg' width='1000' height='800'>
+     <?php
+     }
+
+     if($hallo1 == Bild_33) {
+     ?>
+     <br />
+     Bild_33
+     <img src='Bild33.jpg' width='1000' height='800'>
+     <?php
+     }
+
+    if($hallo1 == Bild_34) {
+     ?>
+     <br />
+     Bild_34
+     <img src='Bild34.jpg' width='1000' height='800'>
+     <?php
+     }
+
+     if($hallo1 == Bild_35) {
+     ?>
+     <br />
+     Bild_35
+     <img src='Bild35.jpg' width='1000' height='800'>
+     <?php
+     }
+ }
+
+?>
+
+</div>
+</div>
+
+
+<div id="box11">
 <div id="logo11">
- 
-<p>einzel Schalter abfragen</p>
-
 <form method="post">
-<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="Schalter">
-<option>Schalter_1</ option>
-<option>Schalter_2</ option>
-</select>
-<br />
-
-<form method="post">
-<button OnClick="submit" name="button11"> jetzt abfragen</button>
+<button OnClick="submit" name="button11">Eintrag Besucher</button>
 </form>
 </div>
 
 <?php
-
 if(isset($_POST['button11'])){ 
-
-$hallo1 = $_POST['Schalter'];
-
-if($hallo1 == Schalter_1) {
- $pin = 8; $Schalter = "Schalter 1";
-}
-if($hallo1 == Schalter_2) {
- $pin = 9; $Schalter = "Schalter 2";
-}
-
-$arduino_ip="$ip_adresse";
-$arduino_port="80";
-function arduino_send_1($ip,$port,$command) {
- $res = fsockopen($ip,$port);
- if($res) {
-     fwrite($res,$command);
-     $ret1 =fread($res,1);
-       global $rows1;
-     $rows1 = $ret1;;
-   return $ret1;
- } else {
-     echo "Fehler, Kommando konnte nicht abgesetzt werden";
- }
-}
-
-arduino_send_1($arduino_ip,$arduino_port,"R".chr($pin).chr(0));
-
-if($rows1 == 1) {
- 
-$zustand = "ein";
-
-} else {
-    $zustand = "aus";;
-}
+header('Location: http://gi337wympadr8z2.synology.me/Webseiten99/ver4.php'); exit; 
 }
 ?>
-
-<h2 align="center"> <b>
-<br />
-<br /> 
-
-<?php echo $Schalter , " " ," " , $zustand;
-
-
-?>
-</div>
-</div>
 
 <div id="box12">
 <div id="logo12">
- 
-<p>alle Schalter abfragen</p>
-
 <form method="post">
-
-<form method="post">
-<button OnClick="submit" name="button12"> jetzt abfragen</button>
+<button OnClick="submit" name="button12">Besucher abfrage</button>
 </form>
 </div>
+
 <?php
-
 if(isset($_POST['button12'])){ 
-
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-    $res = fsockopen($ip,$port);
-    if($res) {
-        fwrite($res,$command);
-        $ret1 =fread($res,5);
-        global $rows1;
-        $rows1 = $ret1;
-     return $ret1;
-    } else {
-        echo "Fehler, Kommando konnte nicht abgesetzt werden";
-    }
-    }
-    
-    arduino_send_1($arduino_ip,$arduino_port,"R".chr(8).chr(0));
-    if($rows1 == 1) {
-     ?>
-     <html>
-     <br />
-     <hr />
-     <h2 align="center"> <b>
-     Pin 8 Schalter 1 = ein </b><br />
-     <hr />
-     <?php
-    }
-    if($rows1 == 0) {
-     ?>
-     <html>
-     <br />
-     <hr />
-      <h2 align="center"> <b>
-     Pin 8 Schalter 1 = aus </b><br />
-     <hr />
-     <?php
-    }
-    
-    arduino_send_1($arduino_ip,$arduino_port,"R".chr(9).chr(0));
-    if($rows1 == 1) {
-     ?>
-     <html>
-     <h2 align="center"> <b>
-     Pin 9 Schalter 2 = ein </b><br />
-     <hr />
-    <?php
-    }
-    if($rows1 == 0) {
-     ?>
-     <html>
-     <h2 align="center"> <b>
-     Pin 9 Schalter 2 = aus </b><br />
-     <hr />
-     <?php
-    }
+header('Location: http://gi337wympadr8z2.synology.me/Webseiten56/ver1.php'); exit; 
 }
 ?>
-</div>
-</div>
 
 <div id="box13">
 <div id="logo13">
- 
-<p>LED's einzel schalten_2</p>
-
 <form method="post">
-
-<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="LED_1">
-<option>LED_1</ option>
-<option>LED_2</ option>
-<option>LED_3</ option>
-<option>LED_4</ option>
-</select>
-<br />
-<select style="background:  rgb(210, 212, 199);color: rgb(42, 11, 43);height:28px; width: 120px; font-size:18px"; name="ein_aus">
-<option>ein</ option>
-<option>aus</ option>
-</select>
-<br />
-
-
-<form method="post">
-<button OnClick="submit" name="button13"> jetzt schalten</button>
+<button OnClick="submit" name="button13">WiFi statt MDBT42Q mit BME280</button>
 </form>
 </div>
+
+<?php
+if(isset($_POST['button13'])){ 
+header('Location: http://gi337wympadr8z2.synology.me/Webseiten57/ver4.php'); exit;
+}
+?>
+
+<div id="box14">
+<div id="logo14">
+<form method="post">
+<button OnClick="submit" name="button14">MDBT42Q mit BME280 später</button>
+</form>
+</div>
+
+<?php
+if(isset($_POST['button15'])){ 
+    header('Location: http://gi337wympadr8z2.synology.me/Webseiten60/ver4.php'); exit; 
+    }
+?>
+
+<div id="box15">
+<div id="logo15">
+<form method="post">
+<button OnClick="submit" name="button15">für später</button>
+</form>
+</div>
+
+<?php
+if(isset($_POST['button15'])){ 
+header('Location: http://gi337wympadr8z2.synology.me/Webseiten60/ver4.php'); exit; 
+}
+
+?>
+<div id="box16">
+<div id="logo16">
+<form method="post">
+<button OnClick="submit" name="button16">für später</button>
+</form>
+</div>
+
+<?php
+if(isset($_POST['button16'])){ 
+header('Location: http://gi337wympadr8z2.synology.me/Webseiten60/ver4.php'); exit; 
+}
+?>
+
+
+<div id="box2">
+
 <?php
 
-if(isset($_POST['button13'])){ 
 
-    $hallo1 = $_POST['LED_1'];
-    $hallo2 = $_POST['ein_aus'];
+
+global $Anzahl;
+global $row;
+
+
+
+
+$verbindung = mysqli_connect("localhost:3307", "Reinhard", "HalloInge5319üäö" ,"Besucher2")
+or die ("Fehler Reihard");
+ // localhost:3306 = Maria DB5
+ // localhost:3307 = Maria DB10
+mysqli_select_db($verbindung , "Besucher")
+or die ("Am Sonntag versuchen");
+
+
+$abfrage = "SELECT * FROM Zähler ORDER BY id DESC LIMIT 1";// letzten 1 Einträge
+
+$ergebnis = mysqli_query($verbindung, $abfrage);
+
+while($row = mysqli_fetch_object($ergebnis))
+ {
+     ?> 
+       
+    <p>
+
+    Datum_Uhrzeit : <b><?php echo $row->Datum_Uhrzeit; ?></b><br />
+    Besucher : <b><?php echo $row->Anzahl; ?></b><br />
     
-    if($hallo1 == LED_1) {
-     $pin = 7;
-    }
-    if($hallo1 == LED_2) {
-     $pin = 6;
-    }
-    if($hallo1 == LED_3) {
-     $pin = 5;
-    }
-    if($hallo1 == LED_4) {
-     $pin = 3;
-    }
-    if($hallo2 == ein) {
-     $led = 1;
-    } else {
-     $led = 0;
-    }
-    $arduino_ip="$ip_adresse";
-    $arduino_port="80";
-    function arduino_send_1($ip,$port,$command) {
-     $res = fsockopen($ip,$port);
-     if($res) {
-         fwrite($res,$command);
-         $ret1 =fread($res,5);
-           global $rows1;
-         $rows1 = $ret1;;
-       return $ret1;
-     } else {
-         echo "Fehler, Kommando konnte nicht abgesetzt werden";
-     }
-    }
-    arduino_send_1($arduino_ip,$arduino_port,"S".chr($pin).chr($led));
-    }
-    ?>
-    </div>
-    </div>
+    
+
+    
+    <hr />
+    </b><br />
+    <?php
+$Anzahl = $row->Anzahl;
+
+}
 
 
-</div>
-</div>
+
+mysqli_close($verbindung);
+
+        
+?>
 
 
-     
+
+
+<p>
+Bauanleitung MDBT42Q mit DL2416T Anzeige, 2 Versorgungsspannugen 3,0 bis 5,0 Volt und über 5 Volt  bis 16,0 Volt, ohne Treiber aber mit Software. <br/>
+Temperatur Anzeige <br/>
+<br/>
+Ein Bild laden. Im Fenster "Bilder laden" zuerst den Button "Bild_1 mit Feil oben/unten drücken und Bild auswählen"<br/>
+Danach den Button "jetzt laden" drücken.<br/> 
+Bild löschen auf den Button "löschen" drücken"<br/>
+<br/>
+Fertiger Adapter DL2416T Anzeige mit MDBT42Q siehe Bild_1, Bild_2, Bild_3 und Bild_4 <br/>
+<br/>
+Komplette Verdrahtung. Siehe Bild_5, Bild_6, Bild_7 und Bild_8 <br/>
+<br/>
+Benötigt werden folgende Bauteile: <br/>
+1 Lochrasterplatine , Hartpapier 50X100mm H25PR050-----------------------0,99€ <br/>
+2 Stiftleisten 2,54mm 1X12 H=10,8mm gerade BKL10120911 a)0,60€-----1,20€ <br/>
+2 Jumper 2,54SW Kurzschlussbrücke a)0,04€-----------------------------------0,08€ <br/>
+1 Präzisionsfassung 24 Polig , RM 2,54-------------------------------------------0,51€ <br/> 
+1 Präz.-Buchsenleiste 20 Polig  MPE 115-1-020----------------------------------1,20€ <br/>
+2 JST PH CKB Crimpkontakte  a)0,03€-------------------------------------------0,06€ <br/>
+1 JST PH2P BU , Stecker------------------------------------------------------------0,04€ <br/>
+1 JST PH2P ST , Buchse-------------------------------------------------------------0,11€ <br/>
+Silberdraht 0,5mm cirka 50 cm <br/>
+Lötzinn 1mm <br/>
+<br/>
+Für die Versorgungsspannug benutze ich eine Powerbank  5 Volt 2200mA. <br/>
+<br/>
+Leiterplatte 1 zusägen auf 7 x 11 Löcher = Dummy. <br/>
+Leiterplatte 2 zusägen auf 7 x 13 Löcher = Adapter. <br/>
+Die IC Fassung 24-polig auf 18-polig kürzen und den Mittelsteg entfernen Pin 9 so kürzen dass der Pin 9 auf der Leiterplatte aufliegt. <br/>
+<br/>
+Wir beginnen mit Leiterplatte 2, 7 x 13 Löcher <br/>
+Jetzt nehmen wir die Batterieanschlussbuchse  JST PH2P ST und kleben sie mit Sekundenkleber von unten auf die Lötaugen. <br/>
+Der Schlitz muss nach außen zeigen, ich habe die Buchse gleich mit rot und schwarz gekennzeichnet. Siehe Bild_9 bis Bild_11 <br/> 
+Nun warten wir bis der Kleber ausgehärtet ist. <br/>
+<br/>
+In der Zwischenzeit bauen wir einen  MDBT42Q Dummy <br/>
+Wir nehmen die Leiterplatte 1, 7 x 11 Löcher, und löten eine Stiftleiste 6-polig und eine Stiftleite 7-polig auf der Platine. <br/>
+Die Leiterplatte 2 nehmen wir als Unterteil für den Pinabstand <br/>
+Jetzt nehmen wir die Präz.-Buchsenleiste 20 Polig und trennen einmal 6 Buchsen und einmal 7 Buchsen ab, am besten mit einer Puksäge einen Kontakt durchsägen. <br/>
+Die beiden Buchsenleisten setzen wir auf die Stiftleisten drauf, jetzt ist der Dummy fertig und wird später verarbeitet. Siehe Bild_12 bis Bild_15 <br/>
+<br/>
+Weiter mit Leiterplatte 2 <br/>
+Mit einem Silberdraht ca. 6cm <br/>
+Am Anfang vom Silberdraht biegen wir eine kleine Öse die um den gekürzten IC Pin 9 herum gelegt wird, dann weiter bis IC Pin 5 <br/>
+eine weitere Bücke von IC Pin 5 weiter bis IC Pin 3, eine weitere Bücke von IC Pin 3 weiter bis IC Pin 18. Siehe Bild_7, Bild_8, Bild_16 und Bild_17 <br/> 
+<br/>
+Jetzt ein Silberdraht über IC Pin 5 Oberseite der Platine weiter bis unterhalb der Platine für den Anschluss J1 und J2. Siehe Bild_7, Bild_8, Bild_18 und Bild_19 <br/>
+<br/>
+Eine Stiftleisten mit 3 Stiften abschneiden und neben der Batterieanschlussbuchse fixieren für J1 und J2. Siehe Bild_7, Bild_8, Bild_20<br/>
+und auf der Lötseite den mittleren Stift zwischen J1 und J2 verlöten. Siehe Bild_21 <br/> 
+<br/>
+IC Fassung einsetzen und nur Pin 3, 5, 18  und die Öse auf der Vorderseite der Platine um Pin 9 löten. Siehe Bild_7, Bild_8, Bild_22 bis Bild_24 <br/> 
+<br/>
+Verlegung der Versorgungsspannug Masse <br/>
+Am Anfang vom Silberdraht biegen wir eine kleine Öse die um den Pin Massepol der Batterieanschlussbuchse gelegt wird kurz nach der Öse den Silberdraht biegen <br/>
+und auf der Lötseite weiter bis IC Fassung Pin 10, 1, 2 und 4. Siehe Bild_7, Bild_8, Bild_25 und Bild_26 <br/>
+<br/>
+Verlegung der Versorgungsspannug Plus <br/>
+Am Anfang vom Silberdraht biegen wir eine kleine Öse die um den Pin Pluspol der Batterieanschlussbuchse gelegt wird kurz nach der Öse den Silberdraht biegen <br/>
+und auf der Lötseite weiter bis J1 und weiter bis Vin für die Buchsenleite MDBT42Q. Siehe Bild_7, Bild_8, Bild_27 und Bild_28 <br/> 
+<br/>
+Jetzt eine Brücke von J2 bis 3,3v  Buchsenleite MDBT42Q. Siehe Bild_7, Bild_8, Bild_29 und Bild_30 <br/>
+<br/>
+Jetzt kommt unser gebauter Dummy zum Einsatz. <br/>
+Wir nehmen den Dummy und verbinden ihn mit der Platine 2 mit einem Gummiband. Siehe Bild_31 <br/>
+Zuerst verlöten wir Pin 11 von der IC Fassung mit Pin D26 vom MDBT42Q, und Pin 8 von der IC Fassung mit Pin D14 vom MDBT42Q. <br/>  
+Danach entfernen wir das Gummiband und verlöten die restlichen Pin's von der IC Fassung mit Pin's vom Dummy MDBT42Q. Siehe Bild_5, Bild_6, Bild_31 und Bild_32 <br/>
+<br/> 
+Jetzt kommt die Masse Brücke nach Masse vom MDBT42Q. Siehe Bild_32 und Bild_33 <br/>
+<br/> 
+Fertig Hurra! <br/> 
+<br/> 
+Jetzt alle Verbindungen Überprüfen. Siehe Bild_5, Bild_6,  Bild_7 und Bild_8 <br/>
+<br/>
+Spannung über die Jamper einstellen. <br/>
+<br/>
+2 Versorgungsspannugen 3,0 bis 5,0 Volt und über 5 Volt  bis 16,0 Volt. Siehe Bild_7 und Bild_8 <br/>
+<br/>
+3,0 bis 5,0 Volt  J1  setzen, das Display wird mit 3,0 bis 5,0 Volt versorgt. Stromaufnahme bei 3V ca. 20mmA, bei 5V ca. 40mmA. Siehe Bild_35 <br/>
+<br/>
+über 5 Volt  bis 16,0 Volt  Jumper J2 setzen, das Display wird mit 3,3 Volt vom MDBT42Q. Siehe Bild_34 <br/>
+<br/>
+Eine einfache Prüfung bevor wir das Display und den MDBT42Q einsetzen. <br/> 
+Wir legen an der Batterieanschlussbuchse einmal 3,0 bis 5,0 Volt an.  Jumper J1, Siehe Bild_35 <br/>
+Spannung messen zwischen Masse und Plus. Siehe Bild_6, Bild_7 und Bild_8 <br/>
+<br/>
+Und auch mit über 5 Volt  bis 16,0 Volt .  Jumper J2, Siehe Bild_34 <br/>
+Nun können wir aber nur die Spannung Vin am MDBT42Q messen. <br/> 
+Das Display bekommt ja 3.3v vom MDBT42Q der noch nicht eingesetzt ist. <br/>
+<br/>
+Wenn alles in Ordnung ist können wir das Display und den MDBT42Q einsetzen. <br/>
+<br/>
+Nachdem die Software Installiert ist dauert es eine kleine weile bis die Temperatur angezeigt wird. <br/>
+Zum Schluss mit save() abspeichern <br/>
+<br/>
+Viel Spaß wünscht Reinhard. <br/>
+<br/>
+Hier die Software<br/>
+<br/>
+<br/>
+// Temperatur MDBT42Q und DL 2416T<br/>
+var d;var e;var t;var a;var b;var c;var t; <br/>
+<br/>
+function Stelle_1(){ <br/>
+a = a; <br/>
+digitalWrite(D16,1);digitalWrite(D14,1);digitalWrite(D15,1); <br/>
+} <br/>
+<br/>
+function Stelle_2(){ <br/>
+a = b; <br/>
+digitalWrite(D16,1);digitalWrite(D14,0);digitalWrite(D15,1); <br/>
+} <br/>
+<br/>
+function Stelle_4(){ <br/>
+a = c; <br/>
+digitalWrite(D16,1);digitalWrite(D14,0);digitalWrite(D15,0); <br/>
+} <br/>
+<br/>
+function onTimer() { <br/>
+<br/>
+// 3.Stelle <br/>
+<br/>
+digitalWrite(D16,1);digitalWrite(D14,1);digitalWrite(D15,0); <br/>
+<br/>
+digitalWrite(D3,0);digitalWrite(D31,1);digitalWrite(D30,1);digitalWrite(D29,1); <br/>
+digitalWrite(D26,0);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); <br/>
+<br/>
+t = E.getTemperature().toFixed(1); <br/>
+<br/>
+//print (t); <br/>
+<br/>
+var simpleString = (t); <br/>
+a = simpleString.substring(0, 1); <br/>
+b = simpleString.substring(1, 2); <br/>
+c = simpleString.substring(3, 4); <br/>
+<br/>
+function wert(){ <br/>
+<br/>
+if (a == 0) { <br/>
+digitalWrite(D3,0);digitalWrite(D31,0);digitalWrite(D30,0);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 1) { <br/>
+digitalWrite(D3,1);digitalWrite(D31,0);digitalWrite(D30,0);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 2) { <br/>
+digitalWrite(D3,0);digitalWrite(D31,1);digitalWrite(D30,0);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 3) { <br/>
+digitalWrite(D3,1);digitalWrite(D31,1);digitalWrite(D30,0);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 4) { <br/>
+digitalWrite(D3,0);digitalWrite(D31,0);digitalWrite(D30,1);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 5) { <br/>
+digitalWrite(D3,1);digitalWrite(D31,0);digitalWrite(D30,1);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 6) { <br/>
+digitalWrite(D3,0);digitalWrite(D31,1);digitalWrite(D30,1);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 7) { <br/>
+digitalWrite(D3,1);digitalWrite(D31,1);digitalWrite(D30,1);digitalWrite(D29,0); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 8) { <br/>
+digitalWrite(D3,0);digitalWrite(D31,0);digitalWrite(D30,0);digitalWrite(D29,1); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+if (a == 9) { <br/>
+digitalWrite(D3,1);digitalWrite(D31,0);digitalWrite(D30,0);digitalWrite(D29,1); <br/>
+digitalWrite(D26,1);digitalWrite(D27,1);digitalWrite(D28,0);digitalWrite(D16,0); } <br/>
+<br/>
+} <br/>
+<br/>
+Stelle_1(); <br/>
+wert(); <br/>
+<br/>
+Stelle_2(); <br/>
+wert(); <br/>
+<br/>
+Stelle_4(); <br/>
+<br/>
+wert(); <br/>
+<br/>
+print (t); <br/>
+<br/>
+} <br/>
+<br/>
+setInterval(onTimer,30000); onTimer(); <br/>
+<br/>
+
+
+</p>
+
+
 
 </body>
+
+
+
+
+
 
