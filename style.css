@@ -1,34 +1,452 @@
-*{
- 
+* {
+    text-align: center;
     margin: 0;
     padding: 0;
     background: rgb(0, 255, 200);
 }
 
+
 .wrapper {
 width: 960;
-max-width: 100%;
-margin: 20 auto;
+max-width: 90%;
+margin: 0 auto;
 }
 
 #überschrift {
 position: fixed;
 top: 0;
 height: 80px;width: 99%;
-background: rgb(212, 66, 188);
+background: rgb(30, 122, 243);
 border: solid black;
-text-align: center;
 }
 
 #logo1 {
-     font-size: 3em; 
+   
+    font-size: 3em; 
 }
 
 #logo1 p {
     padding: 10px;
     font-family: Grand Hotel; 
-    background:rgb(212, 66, 188); 
+    background:rgb(30, 122, 243); 
 }
+
+#box2 {
+    margin-top: 140px;
+    margin-left: 10px;
+    height: 170px;
+    width: 260px;
+background: rgb(0, 255, 200);
+
+border: solid black;
+}
+
+#logo2 {
+      font-size: 2em; 
+}
+#logo2 p {
+    
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+
+#logo2 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0, 0, 0, 0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+#box3 {
+    margin-top: -748px;
+    margin-left: 280px;
+    height: 170px;
+    width: 270px;
+    background:  rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo3 {
+    font-size: 2em; 
+}
+#logo3 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo3 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background: rgb(212, 199, 203);
+    color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+
+
+#box4 {
+    margin-top: 30px;
+    margin-left: 10px;
+    height: 150px;
+    width: 260px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo4 {
+    font-size: 2em; 
+}
+#logo4 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo4 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+
+
+#box5 {
+    margin-top: 30px;
+    margin-left: 280px;
+    height: 150px;
+    width: 270px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo5 {
+    font-size: 2em; 
+}
+#logo5 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo5 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+#box6 {
+    margin-top: 30px;
+    margin-left: 10px;
+    height: 350px;
+    width: 540px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo6 {
+    font-size: 2em; 
+}
+#logo6 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo6 button {
+    height: 30px;
+    width: 250px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+
+#box7 {
+    margin-top: 30px;
+    margin-left: 560px;
+    height: 150px;
+    width: 520px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo7 {
+    font-size: 2em; 
+}
+#logo7 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo7 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+
+
+#box8 {
+    margin-top: 30px;
+    margin-left: 560px;
+    height: 350px;
+    width: 520px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo8 {
+    font-size: 2em; 
+}
+#logo8 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo8 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+
+#box9 {
+    margin-top: -362px;
+    margin-left: 560px;
+    height: 170px;
+    width: 520px;
+background: rgb(0, 255, 200);
+
+border: solid black;
+}
+
+#logo9 {
+    font-size: 2em; 
+          
+}
+#logo9 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+    
+}
+
+#logo9 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+#logo9 option {
+
+background: #db5757;
+background:  rgb(210, 212, 199);
+
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+#box10 {
+    margin-top: -748px;
+    margin-left: 1090px;
+    height: 742px;
+    width: 280px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo10 {
+    font-size: 2em; 
+}
+#logo10 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo10 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+#box11 {
+    margin-top: -748px;
+    margin-left: 1390px;
+    height: 356px;
+    width: 280px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo11 {
+    font-size: 2em; 
+}
+#logo11 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo11 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+#box12 {
+    margin-top: 30px;
+    margin-left: 1390px;
+    height: 350px;
+    width: 280px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo12 {
+    font-size: 2em; 
+}
+#logo12 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo12 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+#box13 {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 250px;
+    width: 280px;
+background: rgb(0, 255, 200);
+border: solid black;
+}
+
+#logo13 {
+    font-size: 2em; 
+}
+#logo13 p {
+    font-family: Grand Hotel; 
+    background: rgb(0, 255, 200);
+}
+
+#logo13 button {
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+    background:  rgb(210, 212, 199);
+color: rgb(42, 11, 43);
+box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);
+border: solid 2px black;
+border-radius: 15px;
+font-size: 20px;
+font-family: Arial;
+  
+}
+
+
+
+
+
+
+
+
 
 
 
