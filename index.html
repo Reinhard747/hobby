@@ -34,7 +34,7 @@
         <hr />          
         <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D4.set();\n');">vorwärts</button>
      
-        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D31.set();for(var i = 10; i <= 100; i++);D31.reset();\'));">vorwärts Stop</button>
+        <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D31.set();for (var i = 100; i <= 255; i=i+1);D31.reset();\'));">vorwärts Stop</button>
         
         <hr />    
         <button style="margin-top: 30px;margin-left: 100px;height: 100px; width: 300px; font-size: 40px; font-family: Arial;box-shadow: 0px 17px 10px -7px rgba(0,0,0,0.9);border: solid 2px black;border-radius: 15px;" onclick="Puck.write('D3.set();\n');">rückwärts</button>
